@@ -1,0 +1,135 @@
+'use strict';
+
+System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_export, _context) {
+  "use strict";
+
+  var QueryCtrl, _createClass, GenericDatasourceQueryCtrl;
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  }
+
+  return {
+    setters: [function (_appPluginsSdk) {
+      QueryCtrl = _appPluginsSdk.QueryCtrl;
+    }, function (_cssQueryEditorCss) {}],
+    execute: function () {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      _export('GenericDatasourceQueryCtrl', GenericDatasourceQueryCtrl = function (_QueryCtrl) {
+        _inherits(GenericDatasourceQueryCtrl, _QueryCtrl);
+
+        function GenericDatasourceQueryCtrl($scope, $injector) {
+          _classCallCheck(this, GenericDatasourceQueryCtrl);
+
+          var _this = _possibleConstructorReturn(this, (GenericDatasourceQueryCtrl.__proto__ || Object.getPrototypeOf(GenericDatasourceQueryCtrl)).call(this, $scope, $injector));
+
+          _this.scope = $scope;
+          _this.target.scada = _this.target.scada || 'select scada';
+          _this.target.device = _this.target.device || 'select device';
+          _this.target.tag = _this.target.tag || 'select tag';
+          _this.target.type = _this.target.type || 'timeserie';
+          //this.target.mode = this.target.mode || 'Continuous';
+
+          return _this;
+        }
+
+        /*getOptions(query) {
+          return this.datasource.metricFindQuery(query || '');
+        }*/
+
+        _createClass(GenericDatasourceQueryCtrl, [{
+          key: 'getScadaOptions',
+          value: function getScadaOptions(query) {
+            //this.target.device = 'select device';
+            //this.target.tag = 'select tag';
+            return this.datasource.metricFindQuery_scada(query);
+          }
+        }, {
+          key: 'getDeviceOptions',
+          value: function getDeviceOptions(query) {
+            //this.target.tag = 'select tag';
+            return this.datasource.metricFindQuery_device(this.target.scada);
+          }
+        }, {
+          key: 'getTagOptions',
+          value: function getTagOptions(query) {
+            return this.datasource.metricFindQuery_tag(this.target.scada, this.target.device);
+          }
+        }, {
+          key: 'toggleEditorMode',
+          value: function toggleEditorMode() {
+            this.target.rawQuery = !this.target.rawQuery;
+          }
+        }, {
+          key: 'onChangeInternal_scada',
+          value: function onChangeInternal_scada() {
+            this.target.device = 'select device';
+            this.target.tag = 'select tag';
+            this.panelCtrl.refresh(); // Asks the panel to refresh data.
+          }
+        }, {
+          key: 'onChangeInternal_device',
+          value: function onChangeInternal_device() {
+            this.target.tag = 'select tag';
+            this.panelCtrl.refresh(); // Asks the panel to refresh data.
+          }
+        }, {
+          key: 'onChangeInternal_tag',
+          value: function onChangeInternal_tag() {
+            this.panelCtrl.refresh(); // Asks the panel to refresh data.
+          }
+        }]);
+
+        return GenericDatasourceQueryCtrl;
+      }(QueryCtrl));
+
+      _export('GenericDatasourceQueryCtrl', GenericDatasourceQueryCtrl);
+
+      GenericDatasourceQueryCtrl.templateUrl = 'partials/query.editor.html';
+    }
+  };
+});
+//# sourceMappingURL=query_ctrl.js.map

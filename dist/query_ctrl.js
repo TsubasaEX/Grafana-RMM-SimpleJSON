@@ -67,9 +67,9 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
           var _this = _possibleConstructorReturn(this, (GenericDatasourceQueryCtrl.__proto__ || Object.getPrototypeOf(GenericDatasourceQueryCtrl)).call(this, $scope, $injector));
 
           _this.scope = $scope;
-          _this.target.scada = _this.target.scada || 'select scada';
-          _this.target.device = _this.target.device || 'select device';
-          _this.target.tag = _this.target.tag || 'select tag';
+          _this.target.scada = _this.target.scada || 'select device';
+          _this.target.device = _this.target.device || 'select plugin';
+          _this.target.tag = _this.target.tag || 'select sensor';
           _this.target.type = _this.target.type || 'timeserie';
           //this.target.mode = this.target.mode || 'Continuous';
 
@@ -81,22 +81,22 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
         }*/
 
         _createClass(GenericDatasourceQueryCtrl, [{
-          key: 'getScadaOptions',
-          value: function getScadaOptions(query) {
-            //this.target.device = 'select device';
-            //this.target.tag = 'select tag';
-            return this.datasource.metricFindQuery_scada(query);
-          }
-        }, {
           key: 'getDeviceOptions',
           value: function getDeviceOptions(query) {
-            //this.target.tag = 'select tag';
-            return this.datasource.metricFindQuery_device(this.target.scada);
+            //this.target.device = 'select plugin';
+            //this.target.tag = 'select sensor';
+            return this.datasource.metricFindQuery_device(query);
           }
         }, {
-          key: 'getTagOptions',
-          value: function getTagOptions(query) {
-            return this.datasource.metricFindQuery_tag(this.target.scada, this.target.device);
+          key: 'getPluginOptions',
+          value: function getPluginOptions(query) {
+            //this.target.tag = 'select sensor';
+            return this.datasource.metricFindQuery_plugin(this.target.scada);
+          }
+        }, {
+          key: 'getSensorOptions',
+          value: function getSensorOptions(query) {
+            return this.datasource.metricFindQuery_sensor(this.target.scada, this.target.device);
           }
         }, {
           key: 'toggleEditorMode',
@@ -106,14 +106,14 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
         }, {
           key: 'onChangeInternal_scada',
           value: function onChangeInternal_scada() {
-            this.target.device = 'select device';
-            this.target.tag = 'select tag';
+            this.target.device = 'select plugin';
+            this.target.tag = 'select sensor';
             this.panelCtrl.refresh(); // Asks the panel to refresh data.
           }
         }, {
           key: 'onChangeInternal_device',
           value: function onChangeInternal_device() {
-            this.target.tag = 'select tag';
+            this.target.tag = 'select sensor';
             this.panelCtrl.refresh(); // Asks the panel to refresh data.
           }
         }, {

@@ -119,22 +119,22 @@ System.register(['lodash'], function (_export, _context) {
             }).then(this.mapToTextValue);
           }
         }, {
-          key: 'metricFindQuery_scada',
-          value: function metricFindQuery_scada(query) {
+          key: 'metricFindQuery_device',
+          value: function metricFindQuery_device(query) {
             var interpolated = {
               target: this.templateSrv.replace(query, null, 'regex')
             };
 
             return this.doRequest({
-              url: this.url + '/searchNode',
+              url: this.url + '/devices',
               data: interpolated,
               method: 'POST'
             }).then(this.mapToTextValue);
           }
         }, {
-          key: 'metricFindQuery_device',
-          value: function metricFindQuery_device(query) {
-            if (query === 'select scada') {
+          key: 'metricFindQuery_plugin',
+          value: function metricFindQuery_plugin(query) {
+            if (query === 'select device') {
               return this.q.when({ data: [] });
             }
             var interpolated = {
@@ -142,15 +142,15 @@ System.register(['lodash'], function (_export, _context) {
             };
 
             return this.doRequest({
-              url: this.url + '/searchDevice',
+              url: this.url + '/plugins',
               data: interpolated,
               method: 'POST'
             }).then(this.mapToTextValue);
           }
         }, {
-          key: 'metricFindQuery_tag',
-          value: function metricFindQuery_tag(selScada, selDevice) {
-            if (selDevice === 'select device') {
+          key: 'metricFindQuery_sensor',
+          value: function metricFindQuery_sensor(selScada, selDevice) {
+            if (selDevice === 'select plugin') {
               return this.q.when({ data: [] });
             }
             var interpolated = {
@@ -159,7 +159,7 @@ System.register(['lodash'], function (_export, _context) {
             };
 
             return this.doRequest({
-              url: this.url + '/searchTag',
+              url: this.url + '/sensors',
               data: interpolated,
               method: 'POST'
             }).then(this.mapToTextValue);
@@ -191,7 +191,7 @@ System.register(['lodash'], function (_export, _context) {
 
             //remove placeholder targets
             options.targets = _.filter(options.targets, function (target) {
-              return target.node !== 'select scada' && target.device !== 'select device' && target.tag !== 'select tag';
+              return target.node !== 'select device' && target.device !== 'select plugin' && target.tag !== 'select sensor';
             });
 
             var targets = _.map(options.targets, function (target) {

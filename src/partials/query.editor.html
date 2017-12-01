@@ -5,7 +5,7 @@
       <select class="gf-form-input" ng-model="ctrl.target.type" ng-options="f as f for f in ['table', 'timeserie']"></select>
     </div>
 
-    <label class="gf-form-label">Scada</label>
+    <label class="gf-form-label">Device</label>
     <div class="gf-form" ng-if="ctrl.target.rawQuery">
       <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.scada" spellcheck="false" ng-blur="ctrl.onChangeInternal_scada()" />
     </div>
@@ -14,13 +14,13 @@
         <gf-form-dropdown model="ctrl.target.scada"
           allow-custom="true"
           lookup-text="true"
-          get-options="ctrl.getScadaOptions($query)"
+          get-options="ctrl.getDeviceOptions($query)"
           on-change="ctrl.onChangeInternal_scada()">
       </gf-form-dropdown>
       </div>
     </div>
 
-    <label class="gf-form-label">Device</label>    
+    <label class="gf-form-label">Plugin</label>
     <div class="gf-form" ng-if="ctrl.target.rawQuery">
       <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.device" spellcheck="false" ng-blur="ctrl.onChangeInternal_device()" />
     </div>
@@ -29,13 +29,13 @@
         <gf-form-dropdown model="ctrl.target.device"
           allow-custom="true"
           lookup-text="true"
-          get-options="ctrl.getDeviceOptions($query)"
+          get-options="ctrl.getPluginOptions($query)"
           on-change="ctrl.onChangeInternal_device()">
       </gf-form-dropdown>
       </div>
     </div>
 
-    <label class="gf-form-label">Tag</label>    
+    <label class="gf-form-label">Sensor</label>
     <div class="gf-form" ng-if="ctrl.target.rawQuery">
       <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.tag" spellcheck="false" ng-blur="ctrl.onChangeInternal_tag()" />
     </div>
@@ -44,7 +44,7 @@
         <gf-form-dropdown model="ctrl.target.tag"
           allow-custom="true"
           lookup-text="true"
-          get-options="ctrl.getTagOptions($query)"
+          get-options="ctrl.getSensorOptions($query)"
           on-change="ctrl.onChangeInternal_tag()">
       </gf-form-dropdown>
       </div>

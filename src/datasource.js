@@ -77,20 +77,20 @@ export class GenericDatasource {
     }).then(this.mapToTextValue);
   }
 
-  metricFindQuery_scada(query) {
+  metricFindQuery_device(query) {
     var interpolated = {
         target: this.templateSrv.replace(query, null, 'regex')
     };
 
     return this.doRequest({
-      url: this.url + '/searchNode',
+      url: this.url + '/devices',
       data: interpolated,
       method: 'POST',
     }).then(this.mapToTextValue);
   }
 
-  metricFindQuery_device(query) {
-    if (query === 'select scada') {
+  metricFindQuery_plugin(query) {
+    if (query === 'select device') {
       return this.q.when({data: []});
     }
     var interpolated = {
@@ -98,14 +98,14 @@ export class GenericDatasource {
     };
 
     return this.doRequest({
-      url: this.url + '/searchDevice',
+      url: this.url + '/plugins',
       data: interpolated,
       method: 'POST',
     }).then(this.mapToTextValue);
   }
 
-  metricFindQuery_tag(selScada, selDevice) {
-    if (selDevice === 'select device') {
+  metricFindQuery_sensor(selScada, selDevice) {
+    if (selDevice === 'select plugin') {
       return this.q.when({data: []});
     }
     var interpolated = {
@@ -114,7 +114,7 @@ export class GenericDatasource {
     };
 
     return this.doRequest({
-      url: this.url + '/searchTag',
+      url: this.url + '/sensors',
       data: interpolated,
       method: 'POST',
     }).then(this.mapToTextValue);
@@ -142,7 +142,7 @@ export class GenericDatasource {
   buildQueryParameters(options) {
     //remove placeholder targets
     options.targets = _.filter(options.targets, target => {
-      return (target.node !== 'select scada') && (target.device !== 'select device')&& (target.tag !== 'select tag');
+      return (target.node !== 'select device') && (target.device !== 'select plugin')&& (target.tag !== 'select sensor');
     });
 
     var targets = _.map(options.targets, target => {

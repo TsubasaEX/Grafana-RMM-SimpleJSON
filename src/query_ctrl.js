@@ -7,9 +7,9 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
     super($scope, $injector);
 
     this.scope = $scope;
-    this.target.scada = this.target.scada || 'select scada';
-    this.target.device = this.target.device || 'select device';
-    this.target.tag = this.target.tag || 'select tag';
+    this.target.scada = this.target.scada || 'select device';
+    this.target.device = this.target.device || 'select plugin';
+    this.target.tag = this.target.tag || 'select sensor';
     this.target.type = this.target.type || 'timeserie';
     //this.target.mode = this.target.mode || 'Continuous';
 
@@ -19,19 +19,19 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
     return this.datasource.metricFindQuery(query || '');
   }*/
 
-  getScadaOptions(query) {
-    //this.target.device = 'select device';
-    //this.target.tag = 'select tag';
-    return this.datasource.metricFindQuery_scada(query);
-  }
-
   getDeviceOptions(query) {
-    //this.target.tag = 'select tag';
-    return this.datasource.metricFindQuery_device(this.target.scada);
+    //this.target.device = 'select plugin';
+    //this.target.tag = 'select sensor';
+    return this.datasource.metricFindQuery_device(query);
   }
 
-  getTagOptions(query) {
-    return this.datasource.metricFindQuery_tag(this.target.scada, this.target.device);
+  getPluginOptions(query) {
+    //this.target.tag = 'select sensor';
+    return this.datasource.metricFindQuery_plugin(this.target.scada);
+  }
+
+  getSensorOptions(query) {
+    return this.datasource.metricFindQuery_sensor(this.target.scada, this.target.device);
   }
 
   toggleEditorMode() {
@@ -39,13 +39,13 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
   }
 
   onChangeInternal_scada() {
-    this.target.device = 'select device';
-    this.target.tag = 'select tag';
+    this.target.device = 'select plugin';
+    this.target.tag = 'select sensor';
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 
   onChangeInternal_device() { 
-    this.target.tag = 'select tag';
+    this.target.tag = 'select sensor';
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 

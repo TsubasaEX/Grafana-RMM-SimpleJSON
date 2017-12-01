@@ -38,18 +38,18 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
     this.target.rawQuery = !this.target.rawQuery;
   }
 
-  onChangeInternal_scada() {
+  onChangeInternal_device() {
     this.target.device = 'select plugin';
     this.target.tag = 'select sensor';
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 
-  onChangeInternal_device() { 
+  onChangeInternal_plugin() {
     this.target.tag = 'select sensor';
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 
-  onChangeInternal_tag() {    
+  onChangeInternal_sensor() {
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 }

@@ -104,21 +104,21 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
             this.target.rawQuery = !this.target.rawQuery;
           }
         }, {
-          key: 'onChangeInternal_scada',
-          value: function onChangeInternal_scada() {
+          key: 'onChangeInternal_device',
+          value: function onChangeInternal_device() {
             this.target.device = 'select plugin';
             this.target.tag = 'select sensor';
             this.panelCtrl.refresh(); // Asks the panel to refresh data.
           }
         }, {
-          key: 'onChangeInternal_device',
-          value: function onChangeInternal_device() {
+          key: 'onChangeInternal_plugin',
+          value: function onChangeInternal_plugin() {
             this.target.tag = 'select sensor';
             this.panelCtrl.refresh(); // Asks the panel to refresh data.
           }
         }, {
-          key: 'onChangeInternal_tag',
-          value: function onChangeInternal_tag() {
+          key: 'onChangeInternal_sensor',
+          value: function onChangeInternal_sensor() {
             this.panelCtrl.refresh(); // Asks the panel to refresh data.
           }
         }]);

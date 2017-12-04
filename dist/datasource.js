@@ -138,7 +138,7 @@ System.register(['lodash'], function (_export, _context) {
               return this.q.when({ data: [] });
             }
             var interpolated = {
-              scada: query
+              device: query
             };
 
             return this.doRequest({
@@ -149,13 +149,13 @@ System.register(['lodash'], function (_export, _context) {
           }
         }, {
           key: 'metricFindQuery_sensor',
-          value: function metricFindQuery_sensor(selScada, selDevice) {
-            if (selDevice === 'select plugin') {
+          value: function metricFindQuery_sensor(selDevice, selPlugin) {
+            if (selDevice === 'select device' || selPlugin === 'select plugin') {
               return this.q.when({ data: [] });
             }
             var interpolated = {
-              scada: selScada,
-              device: selDevice
+              device: selDevice,
+              plugin: selPlugin
             };
 
             return this.doRequest({

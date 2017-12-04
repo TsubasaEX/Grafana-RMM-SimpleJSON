@@ -15,7 +15,7 @@
           allow-custom="true"
           lookup-text="true"
           get-options="ctrl.getDeviceOptions($query)"
-          on-change="ctrl.onChangeInternal_scada()">
+          on-change="ctrl.onChangeInternal_device()">
       </gf-form-dropdown>
       </div>
     </div>
@@ -30,7 +30,7 @@
           allow-custom="true"
           lookup-text="true"
           get-options="ctrl.getPluginOptions($query)"
-          on-change="ctrl.onChangeInternal_device()">
+          on-change="ctrl.onChangeInternal_plugin()">
       </gf-form-dropdown>
       </div>
     </div>
@@ -45,7 +45,7 @@
           allow-custom="true"
           lookup-text="true"
           get-options="ctrl.getSensorOptions($query)"
-          on-change="ctrl.onChangeInternal_tag()">
+          on-change="ctrl.onChangeInternal_sensor()">
       </gf-form-dropdown>
       </div>
     </div>

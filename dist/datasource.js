@@ -191,7 +191,7 @@ System.register(['lodash'], function (_export, _context) {
 
             //remove placeholder targets
             options.targets = _.filter(options.targets, function (target) {
-              return target.node !== 'select device' && target.plugin !== 'select plugin' && target.sensor !== 'select sensor';
+              return target.device !== 'select device' && target.plugin !== 'select plugin' && target.sensor !== 'select sensor';
             });
 
             var targets = _.map(options.targets, function (target) {

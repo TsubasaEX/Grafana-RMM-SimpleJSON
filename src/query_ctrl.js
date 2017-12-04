@@ -7,9 +7,9 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
     super($scope, $injector);
 
     this.scope = $scope;
-    this.target.scada = this.target.scada || 'select device';
-    this.target.device = this.target.device || 'select plugin';
-    this.target.tag = this.target.tag || 'select sensor';
+    this.target.device = this.target.device || 'select device';
+    this.target.plugin = this.target.plugin || 'select plugin';
+    this.target.sensor = this.target.sensor || 'select sensor';
     this.target.type = this.target.type || 'timeserie';
     //this.target.mode = this.target.mode || 'Continuous';
 
@@ -20,18 +20,18 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
   }*/
 
   getDeviceOptions(query) {
-    //this.target.device = 'select plugin';
-    //this.target.tag = 'select sensor';
+    //this.target.plugin = 'select plugin';
+    //this.target.sensor = 'select sensor';
     return this.datasource.metricFindQuery_device(query);
   }
 
   getPluginOptions(query) {
-    //this.target.tag = 'select sensor';
-    return this.datasource.metricFindQuery_plugin(this.target.scada);
+    //this.target.sensor = 'select sensor';
+    return this.datasource.metricFindQuery_plugin(this.target.device);
   }
 
   getSensorOptions(query) {
-    return this.datasource.metricFindQuery_sensor(this.target.scada, this.target.device);
+    return this.datasource.metricFindQuery_sensor(this.target.device, this.target.plugin);
   }
 
   toggleEditorMode() {
@@ -39,13 +39,13 @@ export class GenericDatasourceQueryCtrl extends QueryCtrl {
   }
 
   onChangeInternal_device() {
-    this.target.device = 'select plugin';
-    this.target.tag = 'select sensor';
+    this.target.plugin = 'select plugin';
+    this.target.sensor = 'select sensor';
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 
   onChangeInternal_plugin() {
-    this.target.tag = 'select sensor';
+    this.target.sensor = 'select sensor';
     this.panelCtrl.refresh(); // Asks the panel to refresh data.
   }
 

@@ -67,9 +67,9 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
           var _this = _possibleConstructorReturn(this, (GenericDatasourceQueryCtrl.__proto__ || Object.getPrototypeOf(GenericDatasourceQueryCtrl)).call(this, $scope, $injector));
 
           _this.scope = $scope;
-          _this.target.scada = _this.target.scada || 'select device';
-          _this.target.device = _this.target.device || 'select plugin';
-          _this.target.tag = _this.target.tag || 'select sensor';
+          _this.target.device = _this.target.device || 'select device';
+          _this.target.plugin = _this.target.plugin || 'select plugin';
+          _this.target.sensor = _this.target.sensor || 'select sensor';
           _this.target.type = _this.target.type || 'timeserie';
           //this.target.mode = this.target.mode || 'Continuous';
 
@@ -83,20 +83,20 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
         _createClass(GenericDatasourceQueryCtrl, [{
           key: 'getDeviceOptions',
           value: function getDeviceOptions(query) {
-            //this.target.device = 'select plugin';
-            //this.target.tag = 'select sensor';
+            //this.target.plugin = 'select plugin';
+            //this.target.sensor = 'select sensor';
             return this.datasource.metricFindQuery_device(query);
           }
         }, {
           key: 'getPluginOptions',
           value: function getPluginOptions(query) {
-            //this.target.tag = 'select sensor';
-            return this.datasource.metricFindQuery_plugin(this.target.scada);
+            //this.target.sensor = 'select sensor';
+            return this.datasource.metricFindQuery_plugin(this.target.device);
           }
         }, {
           key: 'getSensorOptions',
           value: function getSensorOptions(query) {
-            return this.datasource.metricFindQuery_sensor(this.target.scada, this.target.device);
+            return this.datasource.metricFindQuery_sensor(this.target.device, this.target.plugin);
           }
         }, {
           key: 'toggleEditorMode',
@@ -106,14 +106,14 @@ System.register(['app/plugins/sdk', './css/query-editor.css!'], function (_expor
         }, {
           key: 'onChangeInternal_device',
           value: function onChangeInternal_device() {
-            this.target.device = 'select plugin';
-            this.target.tag = 'select sensor';
+            this.target.plugin = 'select plugin';
+            this.target.sensor = 'select sensor';
             this.panelCtrl.refresh(); // Asks the panel to refresh data.
           }
         }, {
           key: 'onChangeInternal_plugin',
           value: function onChangeInternal_plugin() {
-            this.target.tag = 'select sensor';
+            this.target.sensor = 'select sensor';
             this.panelCtrl.refresh(); // Asks the panel to refresh data.
           }
         }, {

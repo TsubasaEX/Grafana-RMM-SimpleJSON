@@ -7,11 +7,11 @@
 
     <label class="gf-form-label">Device</label>
     <div class="gf-form" ng-if="ctrl.target.rawQuery">
-      <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.scada" spellcheck="false" ng-blur="ctrl.onChangeInternal_device()" />
+      <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.device" spellcheck="false" ng-blur="ctrl.onChangeInternal_device()" />
     </div>
     <div ng-if="!ctrl.target.rawQuery">
       <div class="gf-form">
-        <gf-form-dropdown model="ctrl.target.scada"
+        <gf-form-dropdown model="ctrl.target.device"
           allow-custom="true"
           lookup-text="true"
           get-options="ctrl.getDeviceOptions($query)"
@@ -22,11 +22,11 @@
 
     <label class="gf-form-label">Plugin</label>
     <div class="gf-form" ng-if="ctrl.target.rawQuery">
-      <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.device" spellcheck="false" ng-blur="ctrl.onChangeInternal_plugin()" />
+      <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.plugin" spellcheck="false" ng-blur="ctrl.onChangeInternal_plugin()" />
     </div>
     <div ng-if="!ctrl.target.rawQuery">
       <div class="gf-form">
-        <gf-form-dropdown model="ctrl.target.device"
+        <gf-form-dropdown model="ctrl.target.plugin"
           allow-custom="true"
           lookup-text="true"
           get-options="ctrl.getPluginOptions($query)"
@@ -37,11 +37,11 @@
 
     <label class="gf-form-label">Sensor</label>
     <div class="gf-form" ng-if="ctrl.target.rawQuery">
-      <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.tag" spellcheck="false" ng-blur="ctrl.onChangeInternal_sensor()" />
+      <textarea class="gf-form-input" rows="5" ng-model="ctrl.target.sensor" spellcheck="false" ng-blur="ctrl.onChangeInternal_sensor()" />
     </div>
     <div ng-if="!ctrl.target.rawQuery">
       <div class="gf-form">
-        <gf-form-dropdown model="ctrl.target.tag"
+        <gf-form-dropdown model="ctrl.target.sensor"
           allow-custom="true"
           lookup-text="true"
           get-options="ctrl.getSensorOptions($query)"

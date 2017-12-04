@@ -191,13 +191,13 @@ System.register(['lodash'], function (_export, _context) {
 
             //remove placeholder targets
             options.targets = _.filter(options.targets, function (target) {
-              return target.node !== 'select device' && target.device !== 'select plugin' && target.tag !== 'select sensor';
+              return target.node !== 'select device' && target.plugin !== 'select plugin' && target.sensor !== 'select sensor';
             });
 
             var targets = _.map(options.targets, function (target) {
-              var scadaId = _this.templateSrv.replace(target.scada, options.scopedVars, 'regex');
-              var deviceName = _this.templateSrv.replace(target.device, options.scopedVars, 'regex');
-              var tagName = _this.templateSrv.replace(target.tag, options.scopedVars, 'regex');
+              var scadaId = _this.templateSrv.replace(target.device, options.scopedVars, 'regex');
+              var deviceName = _this.templateSrv.replace(target.plugin, options.scopedVars, 'regex');
+              var tagName = _this.templateSrv.replace(target.sensor, options.scopedVars, 'regex');
               var targetName = scadaId + '#' + deviceName + '#' + tagName;
               return {
                 target: targetName,

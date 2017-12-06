@@ -195,15 +195,15 @@ System.register(['lodash'], function (_export, _context) {
             });
 
             var targets = _.map(options.targets, function (target) {
-              var scadaId = _this.templateSrv.replace(target.device, options.scopedVars, 'regex');
-              var deviceName = _this.templateSrv.replace(target.plugin, options.scopedVars, 'regex');
-              var tagName = _this.templateSrv.replace(target.sensor, options.scopedVars, 'regex');
-              var targetName = scadaId + '#' + deviceName + '#' + tagName;
+              var device = _this.templateSrv.replace(target.device, options.scopedVars, 'regex');
+              var plugin = _this.templateSrv.replace(target.plugin, options.scopedVars, 'regex');
+              var sensor = _this.templateSrv.replace(target.sensor, options.scopedVars, 'regex');
+              var targetName = device + '|' + plugin + '|' + sensor;
               return {
                 target: targetName,
-                scada: scadaId,
-                device: deviceName,
-                tag: tagName,
+                device: device,
+                plugin: plugin,
+                sensor: sensor,
                 refId: target.refId,
                 hide: target.hide,
                 type: target.type || 'timeserie'

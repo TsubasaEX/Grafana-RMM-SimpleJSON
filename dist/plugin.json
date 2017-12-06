@@ -11,9 +11,9 @@
   "annotations": true,
 
   "info": {
-    "description": "simple json datasource",
+    "description": "rmm simple json datasource",
     "author": {
-      "name": "Grafana Labs",
+      "name": "Zach Chih",
       "url": "https://grafana.com"
     },
     "logos": {

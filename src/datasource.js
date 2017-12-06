@@ -146,15 +146,15 @@ export class GenericDatasource {
     });
 
     var targets = _.map(options.targets, target => {
-      var scadaId = this.templateSrv.replace(target.device, options.scopedVars, 'regex');
-      var deviceName = this.templateSrv.replace(target.plugin, options.scopedVars, 'regex');
-      var tagName = this.templateSrv.replace(target.sensor, options.scopedVars, 'regex');
-      var targetName = scadaId + '#' + deviceName + '#' + tagName;
+      var device = this.templateSrv.replace(target.device, options.scopedVars, 'regex');
+      var plugin = this.templateSrv.replace(target.plugin, options.scopedVars, 'regex');
+      var sensor = this.templateSrv.replace(target.sensor, options.scopedVars, 'regex');
+      var targetName = device + '|' + plugin + '|' + sensor;
       return {
         target: targetName,
-        scada: scadaId,
-        device: deviceName,
-        tag: tagName,
+        device: device,
+        plugin: plugin,
+        sensor: sensor,
         refId: target.refId,
         hide: target.hide,
         type: target.type || 'timeserie'
